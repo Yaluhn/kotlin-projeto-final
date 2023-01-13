@@ -17,13 +17,15 @@ data class Formacao(val nome: String, val nivelDificuldade: Nivel, var conteudos
     }
 
 }
+val Formacao.commaDelimitedUsersNames: String
+    get() = inscritos.map {it.nome}.joinToString()
 
 fun main() {
     //  TODO("Analise as classes modeladas para este domínio de aplicação e pense em formas de evoluí-las.")
     val usuario1 = Usuario("Jonas", 36 , 121)
     val usuario2 = Usuario("Tatiana", 19 , 122)
     val usuario3 = Usuario("Lucas", 25 , 123)
-    val usuario4 = Usuario("Teth", 25, 123)
+    //val usuario4 = Usuario("Teth", 25, 123)
 
     //  TODO("Simule alguns cenários de teste. Para isso, crie alguns objetos usando as classes em questão.")
     val conteudo1 = ConteudoEducacional("Introdução à programação", 60, Nivel.BASICO)
@@ -37,13 +39,13 @@ fun main() {
     formacao1.matricular(usuario3)
 
 
-    /*
     println(formacao1.usuarioEstaInscrito(usuario1))
+    /*
     println(formacao1.usuarioEstaInscrito(usuario2))
     println(formacao1.usuarioEstaInscrito(usuario3))
     println(formacao1.usuarioEstaInscrito(usuario4))
     */
 
-    println("Usuários inscritos no curso de ${formacao1.nome} (${formacao1.nivelDificuldade}): ${formacao1.inscritos}")
-    // TODO("tentar acessar o construtor de Usuario.nome para imprimir somente os usuarios finais")
+    println("Usuários inscritos no curso de ${formacao1.nome} (${formacao1.nivelDificuldade}): ${formacao1.commaDelimitedUsersNames}")
+    // Checked ("tentar acessar o construtor de Usuario.nome para imprimir somente os usuarios finais") _+_ (Conseguido através da extension function)
 }
